@@ -7,7 +7,7 @@ import static com.company.SpotType.*;
 
 public abstract class Vehicle {
     protected VehicleType type;
-    protected ArrayList<HashMap<SpotType, Integer>> spotPreferences = new ArrayList<HashMap<SpotType, Integer>>();
+    protected ArrayList<HashMap<SpotType, Integer>> spotPreferences;
     protected HashMap<SpotType, Integer> occupiedSpots = new HashMap<SpotType, Integer>();
 
     public Vehicle(VehicleType type) {
@@ -17,10 +17,6 @@ public abstract class Vehicle {
     }
 
     // Initialise
-
-    // Initialise Spot Preferences
-    // Cars and Motorcycles both prefer 1 compact spot to a regular spot - 2 preferences
-    // Vans require 3 regular spots - 1 preference
     private ArrayList<HashMap<SpotType, Integer>> initialiseSpotPreferences(VehicleType type) {
         ArrayList<HashMap<SpotType, Integer>> spotPreferences = new ArrayList<HashMap<SpotType, Integer>>();
 
@@ -60,6 +56,12 @@ public abstract class Vehicle {
 
     public HashMap<SpotType, Integer> getOccupiedSpots() {
         return occupiedSpots;
+    }
+
+    // Methods
+    public void incrementOccupiedSpots(Integer nCompact, Integer nRegular) {
+        occupiedSpots.put(COMPACT, occupiedSpots.get(COMPACT) + nCompact);
+        occupiedSpots.put(REGULAR, occupiedSpots.get(REGULAR) + nCompact);
     }
 
 }

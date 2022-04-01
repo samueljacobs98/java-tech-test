@@ -47,6 +47,10 @@ public class Main {
 
         //        - Tell us when the parking lot is empty
         System.out.println(parkingLot.isParkingLotEmpty() ? "Empty" : "Not Empty");
+
+
+        //        - Tell us how many spots vans are taking up
+        parkingLot.getSpotsPerVehicleType();
     }
 }
 
