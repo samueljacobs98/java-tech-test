@@ -2,16 +2,17 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import static com.company.SpotType.COMPACT;
 import static com.company.SpotType.REGULAR;
 import static com.company.VehicleType.*;
 
 public class ParkingLot {
-    ArrayList<Vehicle> parkedVehicles = new ArrayList<Vehicle>();
+    ArrayList<Vehicle> parkedVehicles = new ArrayList<>();
     Integer totalCompactSpots;
     Integer totalRegularSpots;
-    HashMap<SpotType, Integer> availableSpots = new HashMap<SpotType, Integer>();
+    HashMap<SpotType, Integer> availableSpots = new HashMap<>();
 
     public ParkingLot(int nCompact, int nRegular) {
         totalCompactSpots = nCompact;
@@ -30,7 +31,7 @@ public class ParkingLot {
             System.out.println("Vehicle parked.");
         } else {
             System.out.println("Sorry, there's not enough space for your vehicle.");
-        };
+        }
     }
 
     public void printAvailableSpots() {
@@ -48,10 +49,6 @@ public class ParkingLot {
     private boolean checkForSpace(Integer spotPreferenceCompact, Integer spotPreferenceRegular) {
         boolean requiredCompactSpotsAvailable = availableSpots.get(COMPACT) >= spotPreferenceCompact;
         boolean requiredRegularSpotsAvailable = availableSpots.get(REGULAR) >= spotPreferenceRegular;
-
-//        System.out.println(requiredCompactSpotsAvailable);
-//        System.out.println(requiredRegularSpotsAvailable);
-//        System.out.println(requiredCompactSpotsAvailable && requiredRegularSpotsAvailable);
 
         return requiredCompactSpotsAvailable && requiredRegularSpotsAvailable;
     }
@@ -76,7 +73,7 @@ public class ParkingLot {
     }
 
     public boolean isParkingLotEmpty() {
-        return availableSpots.get(COMPACT) == totalCompactSpots && availableSpots.get(REGULAR) == totalRegularSpots;
+        return Objects.equals(availableSpots.get(COMPACT), totalCompactSpots) && Objects.equals(availableSpots.get(REGULAR), totalRegularSpots);
     }
 
     public void getSpotsPerVehicle() {
@@ -88,7 +85,7 @@ public class ParkingLot {
     }
 
     public void getSpotsPerVehicleType() {
-        HashMap<VehicleType, Integer> spotsPerVehicleType = new HashMap<VehicleType, Integer>();
+        HashMap<VehicleType, Integer> spotsPerVehicleType = new HashMap<>();
 
         spotsPerVehicleType.put(MOTORCYCLE, 0);
         spotsPerVehicleType.put(CAR, 0);
