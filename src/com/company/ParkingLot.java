@@ -25,8 +25,12 @@ public class ParkingLot {
     }
 
     public void parkVehicle(Vehicle vehicle) {
-        parkedVehicles.add(vehicle);
-        updateAvailableSpots(vehicle);
+        if (updateAvailableSpots(vehicle)) {
+            parkedVehicles.add(vehicle);
+            System.out.println("Vehicle parked.");
+        } else {
+            System.out.println("Sorry, there's not enough space for your vehicle.");
+        };
     }
 
     public void printAvailableSpots() {
@@ -45,26 +49,30 @@ public class ParkingLot {
         boolean requiredCompactSpotsAvailable = availableSpots.get(COMPACT) >= spotPreferenceCompact;
         boolean requiredRegularSpotsAvailable = availableSpots.get(REGULAR) >= spotPreferenceRegular;
 
+//        System.out.println(requiredCompactSpotsAvailable);
+//        System.out.println(requiredRegularSpotsAvailable);
+//        System.out.println(requiredCompactSpotsAvailable && requiredRegularSpotsAvailable);
+
         return requiredCompactSpotsAvailable && requiredRegularSpotsAvailable;
     }
 
-    private void updateAvailableSpots(Vehicle vehicle) {
+    private boolean updateAvailableSpots(Vehicle vehicle) {
         ArrayList<HashMap<SpotType, Integer>> spotPreferences = vehicle.getSpotPreferences();
         for (HashMap<SpotType, Integer> spotPreference : spotPreferences) {
             System.out.println("Attempting to park: " + vehicle.type.toString().toLowerCase());
 
             Integer spotPreferenceCompact = spotPreference.get(COMPACT);
-            Integer spotPreferenceRegular = spotPreference.get(COMPACT);
+            Integer spotPreferenceRegular = spotPreference.get(REGULAR);
 
             if(checkForSpace(spotPreferenceCompact, spotPreferenceRegular)) {
                 availableSpots.put(COMPACT, availableSpots.get(COMPACT) - spotPreferenceCompact);
-                availableSpots.put(REGULAR, availableSpots.get(COMPACT) - spotPreferenceRegular);
+                availableSpots.put(REGULAR, availableSpots.get(REGULAR) - spotPreferenceRegular);
                 vehicle.incrementOccupiedSpots(spotPreferenceCompact, spotPreferenceRegular);
                 printAvailableSpots();
-                return;
+                return true;
             }
         }
-        System.out.println("Sorry. There is not enough space available for your vehicle.");
+        return false;
     }
 
     public boolean isParkingLotEmpty() {

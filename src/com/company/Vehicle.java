@@ -22,18 +22,18 @@ public abstract class Vehicle {
 
         if (type == VehicleType.VAN) {
             HashMap<SpotType, Integer> spotPreference = new HashMap<SpotType, Integer>();
-            spotPreference.put(SpotType.COMPACT, 0);
-            spotPreference.put(SpotType.REGULAR, 3);
+            spotPreference.put(COMPACT, 0);
+            spotPreference.put(REGULAR, 3);
             spotPreferences.add(spotPreference);
         } else {
             HashMap<SpotType, Integer> spotPreference1 = new HashMap<SpotType, Integer>();
-            spotPreference1.put(SpotType.COMPACT, 1);
-            spotPreference1.put(SpotType.REGULAR, 0);
+            spotPreference1.put(COMPACT, 1);
+            spotPreference1.put(REGULAR, 0);
             spotPreferences.add(spotPreference1);
 
             HashMap<SpotType, Integer> spotPreference2 = new HashMap<SpotType, Integer>();
-            spotPreference2.put(SpotType.COMPACT, 0);
-            spotPreference2.put(SpotType.REGULAR, 1);
+            spotPreference2.put(COMPACT, 0);
+            spotPreference2.put(REGULAR, 1);
             spotPreferences.add(spotPreference2);
         }
 
@@ -61,7 +61,7 @@ public abstract class Vehicle {
     // Methods
     public void incrementOccupiedSpots(Integer nCompact, Integer nRegular) {
         occupiedSpots.put(COMPACT, occupiedSpots.get(COMPACT) + nCompact);
-        occupiedSpots.put(REGULAR, occupiedSpots.get(REGULAR) + nCompact);
+        occupiedSpots.put(REGULAR, occupiedSpots.get(REGULAR) + nRegular);
     }
 
 }

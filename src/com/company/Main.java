@@ -6,15 +6,15 @@ public class Main {
 
     public static void main(String[] args) {
         // Create a parking lot
-        ParkingLot parkingLot = new ParkingLot(5, 5);
+        ParkingLot parkingLot = new ParkingLot(10, 10);
 
         //        - Tell us when the parking lot is empty
         System.out.println(parkingLot.isParkingLotEmpty() ? "Empty" : "Not Empty");
         // Create a vehicle
-//        Motorcycle motorcycle1 = new Motorcycle();
+//        Van van1 = new Van();
 
         // Try to park a vehicle
-//        parkingLot.parkVehicle(motorcycle1);
+//        parkingLot.parkVehicle(van1);
 
         // Create an ArrayList of vehicles
         ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
@@ -31,8 +31,14 @@ public class Main {
 
         Van van1 = new Van();
         Van van2 = new Van();
+        Van van3 = new Van();
+        Van van4 = new Van();
         vehicles.add(van1);
         vehicles.add(van2);
+        vehicles.add(van3);
+        vehicles.add(van4);
+
+
 
 //         Try to park each vehicle
         for (Vehicle vehicle : vehicles) {
