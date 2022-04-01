@@ -26,6 +26,7 @@ public class ParkingLot {
     }
 
     public void parkVehicle(Vehicle vehicle) {
+        System.out.println("Attempting to park: " + vehicle.type.toString().toLowerCase());
         if (updateAvailableSpots(vehicle)) {
             parkedVehicles.add(vehicle);
             System.out.println("Vehicle parked.");
@@ -56,7 +57,6 @@ public class ParkingLot {
     private boolean updateAvailableSpots(Vehicle vehicle) {
         ArrayList<HashMap<SpotType, Integer>> spotPreferences = vehicle.getSpotPreferences();
         for (HashMap<SpotType, Integer> spotPreference : spotPreferences) {
-            System.out.println("Attempting to park: " + vehicle.type.toString().toLowerCase());
 
             Integer spotPreferenceCompact = spotPreference.get(COMPACT);
             Integer spotPreferenceRegular = spotPreference.get(REGULAR);
